@@ -22,7 +22,7 @@ var wg sync.WaitGroup
 func populateChunk(id int) {
 	defer wg.Done()
 	seed := time.Now().UTC().UnixNano()
-  nameGenerator := namegenerator.NewNameGenerator(seed)
+        nameGenerator := namegenerator.NewNameGenerator(seed)
 	
 	for i := 0; i < 100; i++ {
 		user := &User{Username: nameGenerator.Generate()}
@@ -46,6 +46,5 @@ func main() {
 		go populateChunk(i)
 	}
 	wg.Wait()
-	// Using rutines cut the execution time in half.
 	fmt.Println("Finished in", time.Since(start))
 }
